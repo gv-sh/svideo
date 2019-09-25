@@ -1,4 +1,4 @@
-env
-docs
+env/
+docs/
 .DS_Store
-.vscode
+.vscode/
