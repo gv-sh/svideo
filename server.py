@@ -1,3 +1,12 @@
+'''
+.. module:: server
+   :platform: Raspberry Pi
+   :synopsis: Synchronous video playback across multiple raspberry pi
+
+.. moduleauthor:: 0xf17 <grv@mathscapes.xyz>
+
+'''
+
 from svideo import *
 
 s       = None
@@ -5,6 +14,15 @@ clients = []
 READY   = False
 
 def preload():
+    ''' Create and bind socket
+    
+    Args:
+    
+    Returns:
+
+    Raises:
+
+    '''
     global s
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -12,6 +30,19 @@ def preload():
     s.listen(5)
 
 def is_not_connected(caddr):
+    ''' Checks if client is still not connected to master
+    
+    Args: 
+        caddr: Client address
+    
+    Returns:
+        status (bool): 
+            True  -- New client
+            False -- Already connected
+
+    Raises:
+    
+    '''
     global clients 
     for client in clients:
         if caddr == client['addr']:
@@ -53,8 +84,12 @@ def main():
     
     try:
         init()
-        
         log('master', 'user', 'All clients READY')
+        
+        scheduled_start_time = datetime.datetime.now() + datetime.timedelta(seconds=60)
+
+        for c in clients:
+            request_playback(c, 0, scheduled_start_time)
 
     except KeyboardInterrupt:
         s.close()
