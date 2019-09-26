@@ -42,14 +42,17 @@ def request_playback(client, seek_to, scheduled_time):
     csocket.send(pickle.dumps(msg))
     log('master', client['addr'], msg)
 
+def init():
+    while len(clients) < MAX_CLIENTS:
+        conn, addr = s.accept()
+        T = threading.Thread(target = wait_for_all_connections, args = (conn, addr))
+        T.start()
+
 def main():
     log('master', 'user', 'Initiating svideo...')
     
     try:
-        while len(clients) < MAX_CLIENTS:
-            conn, addr = s.accept()
-            T = threading.Thread(target = wait_for_all_connections, args = (conn, addr))
-            T.start()
+        init()
         
         log('master', 'user', 'All clients READY')
 
