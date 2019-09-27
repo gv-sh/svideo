@@ -25,6 +25,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">svideo 0.1 documentation</a> &#187;</li> 
       </ul>
     </div>  
@@ -39,8 +42,32 @@
 <div class="toctree-wrapper compound">
 </div>
 </div>
-<div class="section" id="server">
-<h1>server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-server">
+<span id="server"></span><h1>server<a class="headerlink" href="#module-server" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-server"></span><dl class="function">
+<dt id="server.is_not_connected">
+<code class="descclassname">server.</code><code class="descname">is_not_connected</code><span class="sig-paren">(</span><em>caddr</em><span class="sig-paren">)</span><a class="headerlink" href="#server.is_not_connected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if client is still not connected to master</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.preload">
+<code class="descclassname">server.</code><code class="descname">preload</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#server.preload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and bind socket</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.request_playback">
+<code class="descclassname">server.</code><code class="descname">request_playback</code><span class="sig-paren">(</span><em>client</em>, <em>seek_to</em>, <em>scheduled_time</em><span class="sig-paren">)</span><a class="headerlink" href="#server.request_playback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request <cite>client</cite> to start the video from <cite>seek_to</cite> seconds at the <cite>scheduled_time</cite></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="server.wait_for_all_connections">
+<code class="descclassname">server.</code><code class="descname">wait_for_all_connections</code><span class="sig-paren">(</span><em>csocket</em>, <em>caddr</em><span class="sig-paren">)</span><a class="headerlink" href="#server.wait_for_all_connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for confirmation from <cite>client</cite> for READY status</p>
+</dd></dl>
+
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
@@ -60,7 +87,7 @@
   <h3><a href="#">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Svideo</a></li>
-<li><a class="reference internal" href="#server">server</a></li>
+<li><a class="reference internal" href="#module-server">server</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
@@ -93,6 +120,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">svideo 0.1 documentation</a> &#187;</li> 
       </ul>
     </div>
