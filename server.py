@@ -31,7 +31,7 @@ def wait_for_ready():
     global clients
     
     conn, addr = s.accept()
-    
+
     if is_not_connected(caddr):   
         msg = pickle.loads(csocket.recv(1024))
         log(caddr, 'master', msg)
@@ -61,7 +61,7 @@ def init():
     '''
     while len(clients) < MAX_CLIENTS:
         
-        T = threading.Thread(target = wait_for_ready)
+        T = threading.Thread(target = wait_for_ready, args=())
         T.start()
     
 
