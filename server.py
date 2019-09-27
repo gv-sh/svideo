@@ -57,17 +57,17 @@ def request_playback(client, seek_to, scheduled_time):
 def init():
     ''' Wait for all connections
     '''
-    while len(clients) < MAX_CLIENTS:
+    while len(clients) < MAX_CLIENTS - 1:
         conn, addr = s.accept()
         T = threading.Thread(target = wait_for_ready, args = (conn, addr))
         T.start()
-    print('Init completed')
+    
 
 def start_all():
     scheduled_start_time = datetime.datetime.now() + datetime.timedelta(seconds=60)
 
     for c in clients:
-        request_playback=(c, 0, scheduled_start_time)
+        request_playback(c, 0, scheduled_start_time)
 
 def main():
     ''' Task flow for server
