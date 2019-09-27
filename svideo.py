@@ -5,8 +5,8 @@ import pickle
 import sys
 import datetime 
 
-HOST        = 'rpi1'
-PORT        = 8765
+HOST        = '192.168.0.105'
+PORT        = 8766
 MAX_CLIENTS = 2
 
 def log(fr, to, msg):
