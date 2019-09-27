@@ -61,6 +61,7 @@ def init():
         conn, addr = s.accept()
         T = threading.Thread(target = wait_for_ready, args = (conn, addr))
         T.start()
+    print('Init completed')
 
 def start_all():
     scheduled_start_time = datetime.datetime.now() + datetime.timedelta(seconds=60)
