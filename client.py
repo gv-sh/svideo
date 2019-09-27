@@ -1,12 +1,3 @@
-'''
-.. module:: client
-   :platform: Raspberry Pi
-   :synopsis: Synchronous video playback across multiple raspberry pi
-
-.. moduleauthor:: 0xf17 <grv@mathscapes.xyz>
-
-'''
-
 from svideo import *
 
 s = None 
@@ -30,10 +21,37 @@ def init():
         s.send(pickle.dumps(msg))
         log('me', 'master', msg)
 
+        ref_msg = { 'cmd'           : 'ACK', 
+                    'response_to'   : 'READY'
+        }
         msg = pickle.loads(s.recv(1024))
         log('master', 'me', msg)
 
+        if msg == ref_msg:
+            return True
+
         time.sleep(1)
+
+def receive_start_request():
+    '''
+    '''
+    while True:
+        msg = pickle.loads(s.recv(1024))
+        log('master', 'me', msg)
+
+        if msg['cmd'] == 'PLAY':
+            seek_to         = msg['seek_to']
+            scheduled_time  = msg['scheduled_time']
+
+            # Call video player to start
+            msg = {'cmd': 'ACK', 'response_to': 'PLAY'}
+            s.send(pickle.dumps(msg))
+            
+            log('me', 'user', 'Initiating video player...')
+
+            return True
+
+
 
 def main():
     ''' Main task flow for client
@@ -42,6 +60,10 @@ def main():
     try:
         while True:
             init()
+
+            receive_start_request()
+
+            # wait()
 
     except KeyboardInterrupt:
         s.close()

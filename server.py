@@ -1,12 +1,3 @@
-'''
-.. module:: server
-   :platform: Raspberry Pi
-   :synopsis: Synchronous video playback across multiple raspberry pi
-
-.. moduleauthor:: 0xf17 <grv@mathscapes.xyz>
-
-'''
-
 from svideo import *
 
 s       = None
@@ -52,7 +43,7 @@ def wait_for_ready(csocket, caddr):
             log('master', caddr, msg)
 
 def request_playback(client, seek_to, scheduled_time):
-    ''' Request `client` to start the video from `seek_to` seconds at the `scheduled_time`
+    ''' Request client to start the video from seek_to seconds at the scheduled_time
     '''
 
     csocket = client['socket']
@@ -71,6 +62,12 @@ def init():
         T = threading.Thread(target = wait_for_ready, args = (conn, addr))
         T.start()
 
+def start_all():
+    scheduled_start_time = datetime.datetime.now() + datetime.timedelta(seconds=60)
+
+    for c in clients:
+        request_playback=(c, 0, scheduled_start_time)
+
 def main():
     ''' Task flow for server
     '''
@@ -81,10 +78,9 @@ def main():
         init()
         log('master', 'user', 'All clients READY')
         
-        scheduled_start_time = datetime.datetime.now() + datetime.timedelta(seconds=60)
+        start_all()
 
-        for c in clients:
-            request_playback(c, 0, scheduled_start_time)
+        # wait()
 
     except KeyboardInterrupt:
         s.close()
