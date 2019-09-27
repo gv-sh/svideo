@@ -135,7 +135,6 @@ def start_all():
         request_playback(c, 0, scheduled_start_time)
 
 
-
 def show_client_count():
     ''' For testing only. Show number of concurrent clients '''
 
