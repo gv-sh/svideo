@@ -44,6 +44,8 @@ def receive_start_request():
             scheduled_time  = msg['scheduled_time']
 
             # Call video player to start
+            os.system('omxplayer omx_test/test.mp4')
+
             msg = {'cmd': 'ACK', 'response_to': 'PLAY'}
             s.send(pickle.dumps(msg))
             
