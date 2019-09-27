@@ -11,6 +11,7 @@ def preload():
     global s
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.settimeout(1.0)
     s.bind((HOST, PORT))
     s.listen(5)
 
@@ -58,13 +59,13 @@ def init():
     ''' Wait for all connections
     '''
 
-    while True :
-        if len(clients) < MAX_CLIENTS:
-            break
-        conn, addr = s.accept()
+    while len(clients) < MAX_CLIENTS :
+        try:
+            conn, addr = s.accept()
+        except socket.timeout:
+            continue
         T = threading.Thread(target = wait_for_ready, args=(conn, addr))
-        T.start()
-    
+        T.start()   
 
 def start_all():
     scheduled_start_time = datetime.datetime.now() + datetime.timedelta(seconds=60)
@@ -72,9 +73,16 @@ def start_all():
     for c in clients:
         request_playback(c, 0, scheduled_start_time)
 
+def show_client_count():
+    while True:
+        print('client count:' + str(len(clients)))
+        time.sleep(0.5)
+
 def main():
     ''' Task flow for server
     '''
+    # T = threading.Thread(target = show_client_count, args=())
+    # T.start()
 
     log('master', 'user', 'Initiating svideo...')
     
