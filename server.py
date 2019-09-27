@@ -58,7 +58,7 @@ def init():
     ''' Wait for all connections
     '''
 
-    while len(clients) < MAX_CLIENTS:
+    while True:
         conn, addr = s.accept()
         T = threading.Thread(target = wait_for_ready, args=(conn, addr))
         T.start()
@@ -77,10 +77,13 @@ def main():
     log('master', 'user', 'Initiating svideo...')
     
     try:
-        init()
-        log('master', 'user', 'All clients READY')
-        
-        start_all()
+        while True:
+            init()
+            log('master', 'user', 'All clients READY')
+            
+            if len(clients) == MAX_CLIENTS:
+                start_all()
+
 
         # wait()
 
