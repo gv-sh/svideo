@@ -3,7 +3,6 @@ from svideo import *
 
 server_socket   = None
 clients         = []
-READY           = False
 
 
 def preload():
