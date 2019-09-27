@@ -49,7 +49,8 @@ def wait_for_all_connections(csocket, caddr):
             log('master', caddr, msg)
 
 def request_playback(client, seek_to, scheduled_time):
-    ''' Request `client` to start the video from `seek_to` seconds at the `scheduled_time`.
+    ''' Request `client` to start the video from `seek_to` seconds at the `scheduled_time`
+    '''
     csocket = client['socket']
     msg = { 'cmd'           : 'PLAY', 
             'seek_to'       : seek_to,

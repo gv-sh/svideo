@@ -9,6 +9,9 @@ Svideo
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+
+server
+======
 .. automodule:: server
    :members:
 
