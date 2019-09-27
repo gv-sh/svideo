@@ -10,10 +10,17 @@ Svideo
    :maxdepth: 2
    :caption: Contents:
 
-server
-======
+.. automodule:: svideo
+   :members:
+   :noindex:
+
 .. automodule:: server
    :members:
+   :noindex:
+
+.. automodule:: client
+   :members:
+   :noindex:
 
 Indices and tables
 ==================

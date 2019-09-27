@@ -41,31 +41,64 @@
 <h1>Svideo<a class="headerlink" href="#svideo" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-<div class="section" id="module-server">
-<span id="server"></span><h1>server<a class="headerlink" href="#module-server" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-svideo"></span><dl class="function">
+<dt>
+<code class="descclassname">svideo.</code><code class="descname">log</code><span class="sig-paren">(</span><em>fr</em>, <em>to</em>, <em>msg</em><span class="sig-paren">)</span></dt>
+<dd><p>print log of happened communication</p>
+</dd></dl>
+
 <span class="target" id="module-server"></span><dl class="function">
-<dt id="server.is_not_connected">
-<code class="descclassname">server.</code><code class="descname">is_not_connected</code><span class="sig-paren">(</span><em>caddr</em><span class="sig-paren">)</span><a class="headerlink" href="#server.is_not_connected" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="descclassname">server.</code><code class="descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Wait for all connections</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">server.</code><code class="descname">is_not_connected</code><span class="sig-paren">(</span><em>caddr</em><span class="sig-paren">)</span></dt>
 <dd><p>Checks if client is still not connected to master</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="server.preload">
-<code class="descclassname">server.</code><code class="descname">preload</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#server.preload" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="descclassname">server.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Task flow for server</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">server.</code><code class="descname">preload</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Create and bind socket</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="server.request_playback">
-<code class="descclassname">server.</code><code class="descname">request_playback</code><span class="sig-paren">(</span><em>client</em>, <em>seek_to</em>, <em>scheduled_time</em><span class="sig-paren">)</span><a class="headerlink" href="#server.request_playback" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="descclassname">server.</code><code class="descname">request_playback</code><span class="sig-paren">(</span><em>client</em>, <em>seek_to</em>, <em>scheduled_time</em><span class="sig-paren">)</span></dt>
 <dd><p>Request <cite>client</cite> to start the video from <cite>seek_to</cite> seconds at the <cite>scheduled_time</cite></p>
 </dd></dl>
 
 <dl class="function">
-<dt id="server.wait_for_all_connections">
-<code class="descclassname">server.</code><code class="descname">wait_for_all_connections</code><span class="sig-paren">(</span><em>csocket</em>, <em>caddr</em><span class="sig-paren">)</span><a class="headerlink" href="#server.wait_for_all_connections" title="Permalink to this definition">¶</a></dt>
-<dd><p>Wait for confirmation from <cite>client</cite> for READY status</p>
+<dt>
+<code class="descclassname">server.</code><code class="descname">wait_for_ready</code><span class="sig-paren">(</span><em>csocket</em>, <em>caddr</em><span class="sig-paren">)</span></dt>
+<dd><p>Wait for confirmation from client’s for READY status</p>
+</dd></dl>
+
+<span class="target" id="module-client"></span><dl class="function">
+<dt>
+<code class="descclassname">client.</code><code class="descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Send READY status to master</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">client.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Main task flow for client</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descclassname">client.</code><code class="descname">preload</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Setup socket to communicate with master</p>
 </dd></dl>
 
 </div>
@@ -87,7 +120,6 @@
   <h3><a href="#">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Svideo</a></li>
-<li><a class="reference internal" href="#module-server">server</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
