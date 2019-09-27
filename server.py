@@ -12,7 +12,6 @@ def preload():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s.bind((HOST, PORT))
-    socket.setdefaulttimeout(1)
     s.listen(5)
 
 def is_not_connected(caddr):
@@ -25,11 +24,13 @@ def is_not_connected(caddr):
             return False
     return True
 
-def wait_for_ready(csocket, caddr):
+def wait_for_ready():
     ''' Wait for confirmation from client's for READY status
     '''
 
     global clients
+    
+    conn, addr = s.accept()
     
     if is_not_connected(caddr):   
         msg = pickle.loads(csocket.recv(1024))
@@ -59,8 +60,8 @@ def init():
     ''' Wait for all connections
     '''
     while len(clients) < MAX_CLIENTS:
-        conn, addr = s.accept()
-        T = threading.Thread(target = wait_for_ready, args = (conn, addr))
+        
+        T = threading.Thread(target = wait_for_ready)
         T.start()
     
 
