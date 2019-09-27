@@ -24,13 +24,11 @@ def is_not_connected(caddr):
             return False
     return True
 
-def wait_for_ready():
+def wait_for_ready(csocket, caddr):
     ''' Wait for confirmation from client's for READY status
     '''
 
     global clients
-    
-    conn, addr = s.accept()
 
     if is_not_connected(caddr):   
         msg = pickle.loads(csocket.recv(1024))
@@ -59,9 +57,10 @@ def request_playback(client, seek_to, scheduled_time):
 def init():
     ''' Wait for all connections
     '''
+
     while len(clients) < MAX_CLIENTS:
-        
-        T = threading.Thread(target = wait_for_ready, args=())
+        conn, addr = s.accept()
+        T = threading.Thread(target = wait_for_ready, args=(conn, addr))
         T.start()
     
 
