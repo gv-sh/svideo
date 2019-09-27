@@ -24,7 +24,6 @@ def preload():
 
 def is_not_connected(caddr):
     ''' Checks if client is still not connected to master
-    `caddr` is client's address
     '''
     global clients 
     for client in clients:
@@ -33,7 +32,9 @@ def is_not_connected(caddr):
     return True
 
 def wait_for_all_connections(csocket, caddr):
-    global clients, READY
+    ''' Wait for confirmation from `client` for READY status
+    '''
+    global clients
     
     if is_not_connected(caddr):   
         msg = pickle.loads(csocket.recv(1024))
@@ -48,6 +49,7 @@ def wait_for_all_connections(csocket, caddr):
             log('master', caddr, msg)
 
 def request_playback(client, seek_to, scheduled_time):
+    ''' Request `client` to start the video from `seek_to` seconds at the `scheduled_time`.
     csocket = client['socket']
     msg = { 'cmd'           : 'PLAY', 
             'seek_to'       : seek_to,
