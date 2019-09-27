@@ -57,7 +57,7 @@ def request_playback(client, seek_to, scheduled_time):
 def init():
     ''' Wait for all connections
     '''
-    while len(clients) < MAX_CLIENTS - 1:
+    while len(clients) < MAX_CLIENTS:
         conn, addr = s.accept()
         T = threading.Thread(target = wait_for_ready, args = (conn, addr))
         T.start()
