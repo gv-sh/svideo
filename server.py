@@ -15,13 +15,6 @@ READY   = False
 
 def preload():
     ''' Create and bind socket
-    
-    Args:
-    
-    Returns:
-
-    Raises:
-
     '''
     global s
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -31,17 +24,7 @@ def preload():
 
 def is_not_connected(caddr):
     ''' Checks if client is still not connected to master
-    
-    Args: 
-        caddr: Client address
-    
-    Returns:
-        status (bool): 
-            True  -- New client
-            False -- Already connected
-
-    Raises:
-    
+    `caddr` is client's address
     '''
     global clients 
     for client in clients:
