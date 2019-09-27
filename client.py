@@ -12,7 +12,10 @@ def preload():
 def init():
     ''' Send READY status to master
     '''
-    s.connect((HOST, PORT))
+    try:
+        s.connect((HOST, PORT))
+    except:
+        pass
     while True:
         msg = { 'cmd'           :'READY', 
                 'response_to'   :'NULL' 
