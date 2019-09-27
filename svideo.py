@@ -6,7 +6,7 @@ import sys
 import datetime 
 import os
 
-HOST        = '192.168.0.100'
+HOST        = '192.168.0.105'
 PORT        = 8766
 MAX_CLIENTS = 2
 
