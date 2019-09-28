@@ -3,6 +3,19 @@ from svideo import *
 client_socket = None 
 do_not_connect_flag = False
 
+scripts = {
+    'mount_usb' : 'sh scripts/mount_usb.sh'
+    'setup_usb' : 'sh scripts/setup_usb.sh'
+    'play_usb'  : 'sh scripts/play_usb.sh'
+    'unmount_usb' : 'sh scripts/unmount_usb.sh'
+}
+
+def mount_usb():
+    os.system(scripts['mount_usb'])
+
+def play_usb():
+    os.system(scripts['play_usb'])
+
 def preload():
     ''' Setup socket to communicate with server '''
 
@@ -69,8 +82,11 @@ def receive_start_request():
 
             log('me', 'user', 'Initiating video player...')
 
-            # Call video player to start
-            os.system('omxplayer omx_test/test.mp4')
+            # Call video player to start test file
+            # os.system('omxplayer omx_test/test.mp4')
+
+            # Call video player to start a file from usb
+            play_usb()
 
             # Send to server that video is started
             msg = {'cmd': 'ACK', 'response_to': 'PLAY'}
@@ -82,6 +98,8 @@ def receive_start_request():
 
 def main():
     ''' Main task flow for client'''
+
+    mount_usb()
 
     try:
         while True:

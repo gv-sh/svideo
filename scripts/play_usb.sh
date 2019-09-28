@@ -1,0 +1,1 @@
+omxplayer /media/usb/videos/01.mp4
