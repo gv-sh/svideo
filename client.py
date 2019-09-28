@@ -54,17 +54,25 @@ def init():
                 'response_to'   :'NULL' 
         }
 
-        client_socket.send(pickle.dumps(msg))
-        log('me', 'master', msg)
+        try:
+            client_socket.send(pickle.dumps(msg))
+            log('me', 'master', msg)
+        except:
+            log('me', 'user', 'Unknown exception')
 
-        ref_msg = { 'cmd'           : 'ACK', 
-                    'response_to'   : 'READY'
-        }
-        msg = pickle.loads(client_socket.recv(1024))
-        log('master', 'me', msg)
 
-        if msg == ref_msg:
-            return True
+        try:
+            ref_msg = { 'cmd'           : 'ACK', 
+            'response_to'   : 'READY'
+            }
+
+            msg = pickle.loads(client_socket.recv(1024))
+            log('master', 'me', msg)
+
+            if msg == ref_msg:
+                return True
+        except:
+            log('me', 'user', 'Unknown exception')
 
         time.sleep(1)
 
@@ -73,8 +81,11 @@ def receive_start_request():
     
     # Wait to receive play instructions
     while True:
-        msg = pickle.loads(client_socket.recv(1024))
-        log('master', 'me', msg)
+        try:
+            msg = pickle.loads(client_socket.recv(1024))
+            log('master', 'me', msg)
+        except:
+            log('me', 'user', 'Unknown exception')
 
         if msg['cmd'] == 'PLAY':
             seek_to         = msg['seek_to']
@@ -88,10 +99,13 @@ def receive_start_request():
             # Call video player to start a file from usb
             play_usb()
 
-            # Send to server that video is started
-            msg = {'cmd': 'ACK', 'response_to': 'PLAY'}
-            client_socket.send(pickle.dumps(msg))
-            
+            try:
+                # Send to server that video is started
+                msg = {'cmd': 'ACK', 'response_to': 'PLAY'}
+                client_socket.send(pickle.dumps(msg))
+            except:
+                log('me', 'user', 'Unknown exception')
+                
             return True
 
 
