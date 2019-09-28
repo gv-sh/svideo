@@ -99,7 +99,7 @@ def receive_start_request():
 def main():
     ''' Main task flow for client'''
 
-    mount_usb()
+    # mount_usb()
 
     try:
         while True:
