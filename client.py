@@ -13,6 +13,9 @@ scripts = {
 def mount_usb():
     os.system(scripts['mount_usb'])
 
+def unmount_usb():
+    os.system(scripts['unmount_usb'])
+
 def play_usb():
     os.system(scripts['play_usb'])
 
@@ -109,10 +112,10 @@ def receive_start_request():
             return True
 
 
-
 def main():
     ''' Main task flow for client'''
 
+    unmount_usb()
     mount_usb()
 
     try:
