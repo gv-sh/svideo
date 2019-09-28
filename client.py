@@ -60,7 +60,7 @@ def init():
         ref_msg = { 'cmd'           : 'ACK', 
                     'response_to'   : 'READY'
         }
-        msg = pickle.loads(s.recv(1024))
+        msg = pickle.loads(client_socket.recv(1024))
         log('master', 'me', msg)
 
         if msg == ref_msg:
@@ -73,7 +73,7 @@ def receive_start_request():
     
     # Wait to receive play instructions
     while True:
-        msg = pickle.loads(s.recv(1024))
+        msg = pickle.loads(client_socket.recv(1024))
         log('master', 'me', msg)
 
         if msg['cmd'] == 'PLAY':
