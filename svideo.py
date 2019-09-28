@@ -7,7 +7,7 @@ import datetime
 import os
 
 HOSTS               = ['192.168.0.100', '192.168.0.105', '192.168.0.106']
-HOST                = HOSTS[0]
+HOST                = 'rpi1.local'
 PORT                = 8766
 MAX_CLIENTS         = 2
 LISTENING_TIME_OUT  = 1.0
