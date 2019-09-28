@@ -4,9 +4,9 @@ client_socket = None
 do_not_connect_flag = False
 
 scripts = {
-    'mount_usb' : 'sh scripts/mount_usb.sh'
-    'setup_usb' : 'sh scripts/setup_usb.sh'
-    'play_usb'  : 'sh scripts/play_usb.sh'
+    'mount_usb' : 'sh scripts/mount_usb.sh',
+    'setup_usb' : 'sh scripts/setup_usb.sh',
+    'play_usb'  : 'sh scripts/play_usb.sh',
     'unmount_usb' : 'sh scripts/unmount_usb.sh'
 }
 
