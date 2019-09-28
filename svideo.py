@@ -6,7 +6,8 @@ import sys
 import datetime 
 import os
 
-HOST                = '192.168.0.105'
+HOSTS               = ['localhost', '192.168.0.105']
+HOST                = HOSTS[0]
 PORT                = 8766
 MAX_CLIENTS         = 2
 LISTENING_TIME_OUT  = 1.0
