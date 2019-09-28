@@ -54,7 +54,7 @@ def init():
                 'response_to'   :'NULL' 
         }
 
-        s.send(pickle.dumps(msg))
+        client_socket.send(pickle.dumps(msg))
         log('me', 'master', msg)
 
         ref_msg = { 'cmd'           : 'ACK', 
