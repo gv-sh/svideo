@@ -163,7 +163,7 @@ def main():
 
     # Graceful shutdown
     except KeyboardInterrupt:
-        s.close()
+        server_socket.close()
         sys.exit(0)
 
 
